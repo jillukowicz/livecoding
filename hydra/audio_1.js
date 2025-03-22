@@ -1,0 +1,10 @@
+a.show()
+shape(() => (Math.sin(time) + 1.949) * 5.504, .5, .01)
+	.repeat(7.591, 3.032, () => a.fft[0] * 3, () => a.fft[1])
+	.scrollY(.5, 0.1)
+	.layer(src(o1)
+		.mask(o0)
+		.luma(.01, 0.054)
+		.invert(0.134))
+	.modulate(o1, 0.024)
+	.out(o0);
