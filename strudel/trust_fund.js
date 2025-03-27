@@ -2,6 +2,15 @@
    remix @by jillukowicz
 */
 
+await initHydra({feedStrudel:1})
+
+src(s0).kaleid(H("<4 5 6>"))
+.diff(osc(1,0.5,5))
+.modulateScale(osc(2,-0.25,1))
+.out()
+
+all(x=>x.fft(4).scope({pos:0,smear:.95}))
+
 samples({
   finance:  ['man-in-finance/finance_00.wav']
 }, 'github:sandpills/v10101a-samples/main/');
@@ -11,6 +20,8 @@ $: s("finance")
   .slow(0.75)
   .mask("<0 1 0 1>/2")
   .room(mousey.range(.5,2))
+  .jux(rev)
+
 
 $: n("0")
   .s("<gm_fx_atmosphere, sawtooth>")
@@ -23,7 +34,7 @@ $: n("0")
   .attack(.2)
   .sustain(.8)
   .distort(sine.range(1,3))
-
+  .coarse(choose("2 6 10 12"))
 
 $: n("0")
   .s("<gm_pad_poly>")
@@ -48,6 +59,7 @@ $: s("bd*4")
   .distort(mousey.range(.5, 2))
   .lpf(mousex.range(300,1000))
   .transpose(mousey.range(1,20))
+  .pcurve("<0 1>")
 
 $: s("hh*4")
   .room(mousey.range(2,.4))
@@ -55,3 +67,4 @@ $: s("hh*4")
   .bpf(500)
   .bpq(0)
   .mask("<0 1 0 1>/2")
+  .crush(2)
